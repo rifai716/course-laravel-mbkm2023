@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 class UserController extends Controller
 {
     function admin() {
-        return view('administrator.user.view');
+        $header = 'Data Admin'; 
+        return view('administrator.admin.view')->with('header', $header); // sama saja
     }
 
     function student() {
-        return view('administrator.user.view');
+        $header = 'Data Mahasiswa'; 
+        return view('administrator.student.view')->with(compact('header')); // sama saja
     }
 }
