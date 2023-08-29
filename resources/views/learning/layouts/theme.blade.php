@@ -7,8 +7,8 @@
     <title>{{ $judul ?? 'Default' }}</title>
 </head>
 <body>
-    @include('components/navbar')
-    @include('components/sidebar')
+    @include('learning.components.navbar')
+    @include('learning.components.sidebar')
     @yield('content')
 </body>
 </html>

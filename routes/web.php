@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\Learning\ArticleController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\TableController;
-use App\Http\Controllers\TestController;
+use App\Http\Controllers\Learning\TableController;
+use App\Http\Controllers\Learning\TestController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,25 +17,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/** [LEARNING] */
 Route::get('/', function () {
-    return view('welcome');
+    return view('learning.welcome');
 });
 
-Route::get('/test_apa_aja', function() {
-    return view('test');
+Route::get('/learning/test', function () {
+    return view('learning.test');
 });
 
-
-
-Route::get('/test-controller-lebih-panjang/{param1}', [TestController::class, 'index'])->name('testing.parameter');
-Route::get('/artikel/{slug}', [ArticleController::class, 'view']);
-Route::get('/table', [TableController::class, 'view']);
-
-
-Route::get('/crud-user', function() {
-    return view('crud_user');
+Route::get('/learning/template', function () {
+    return view('learning.crud_user');
 });
 
+Route::get('/learning/test-controller-lebih-panjang/{param1}', [TestController::class, 'index'])->name('testing.parameter');
+Route::get('/learning/artikel/{slug}', [ArticleController::class, 'view']);
+Route::get('/learning/table', [TableController::class, 'view']);
 
+/** [AUTH] */
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/forgot-password', [AuthController::class, 'forgot_password'])->name('forgot.password');
+
