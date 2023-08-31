@@ -8,20 +8,32 @@
                     <!-- Card body -->
                     <div class="card-body p-6">
                         <div class="mb-4">
-                            <a href="{{ route('login') }}"><h1 class="text-primary">SISLAB</h1></a>
+                            <a href="{{ route('login') }}">
+                                <h1 class="text-primary">SISLAB</h1>
+                            </a>
                             <p class="mb-6">SISTEM PEMINJAMAN BARANG</p>
                         </div>
                         <!-- Form -->
-                        <form>
+                        <form method="POST" action="{{ route('login.process') }}">
+                            @csrf
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                             <!-- Username -->
                             <div class="mb-3">
                                 <label class="form-label">Email / NIM</label>
-                                <input type="text" class="form-control" name="user" required="">
+                                <input type="text" class="form-control" name="user">
                             </div>
                             <!-- Password -->
                             <div class="mb-3">
                                 <label for="password" class="form-label">Password</label>
-                                <input type="password" id="password" class="form-control" name="password" required="">
+                                <input type="password" id="password" class="form-control" name="password">
                             </div>
                             <!-- Checkbox -->
                             <div class="d-lg-flex justify-content-between align-items-center mb-4">
@@ -39,7 +51,8 @@
 
                                 <div class="d-md-flex justify-content-between mt-4">
                                     <div>
-                                        <a href="{{ route('forgot.password') }}" class="text-inherit fs-5">Lupa password?</a>
+                                        <a href="{{ route('forgot.password') }}" class="text-inherit fs-5">Lupa
+                                            password?</a>
                                     </div>
                                 </div>
                             </div>

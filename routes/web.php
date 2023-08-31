@@ -46,7 +46,8 @@ Route::get('/learning/table', [TableController::class, 'view']);
 
 /** [AUTH] */
 Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::get('/forgot-password', [AuthController::class, 'forgot_password'])->name('forgot.password');
+Route::post('/login-process', [AuthController::class, 'loginProcess'])->name('login.process');
+Route::get('/forgot-password', [AuthController::class, 'forgotPassword'])->name('forgot.password');
 
 /** [ADMINISTRATOR] */  
 Route::prefix('administrator')
