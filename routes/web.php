@@ -8,6 +8,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\Learning\TableController;
 use App\Http\Controllers\Learning\TestController;
 use App\Http\Controllers\ReturnController;
+use App\Http\Controllers\TestInputController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -59,3 +60,8 @@ Route::prefix('administrator')
     Route::get('/return-list', [ReturnController::class, 'index'])->name('return');
 });
 
+
+Route::get('/testing-input-dummy', [TestInputController::class, 'index']);
+Route::get('/testing-input', [TestInputController::class, 'test_input'])->name('input.get');
+Route::get('/testing-form', [TestInputController::class, 'form']);
+Route::get('/testing-view', [TestInputController::class, 'table']);
