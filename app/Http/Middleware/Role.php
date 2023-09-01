@@ -14,14 +14,16 @@ class Role
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, $role): Response
+    public function handle(Request $request, Closure $next, ... $role): Response
     {
         if(!Auth::check()) {
             return redirect()->to(route('login'));
         }
 
-        if ($request->user()->role == $role) {
-            return $next($request);
+        foreach ($role as $value) {
+            if($request->user()->role == $value) {
+                return $next($request); 
+            }
         }
  
         return redirect()->to(route('login'));

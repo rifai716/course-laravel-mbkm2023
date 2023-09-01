@@ -72,3 +72,5 @@ Route::prefix('administrator')
     Route::get('/applicant-list', [ApplicantController::class, 'index'])->name('applicant');
     Route::get('/return-list', [ReturnController::class, 'index'])->name('return');
 });
+
+Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
