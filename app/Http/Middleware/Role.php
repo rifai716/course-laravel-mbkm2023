@@ -26,6 +26,6 @@ class Role
             }
         }
  
-        return redirect()->to(route('login'));
+        return abort(403, 'NOT ALLOWED !');
     }
 }

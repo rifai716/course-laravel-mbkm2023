@@ -20,5 +20,12 @@ class DatabaseSeeder extends Seeder
             'password' => 'admin12345',
             'role' => 'super'
         ]);
+
+        \App\Models\User::factory()->create([
+            'name' => 'Willy Permana Putra',
+            'email' => 'willy@polindra.ac.id',
+            'password' => 'admin12345',
+            'role' => 'admin'
+        ]);
     }
 }

@@ -44,6 +44,7 @@ Route::get('/learning/test-controller-lebih-panjang/{param1}', [TestController::
 Route::get('/learning/artikel/{slug}', [ArticleController::class, 'view']);
 Route::get('/learning/table', [TableController::class, 'view']);
 
+// route -- view -- controller -- model (with some variants input)
 Route::get('/testing-input-dummy', [TestInputController::class, 'index']);
 Route::get('/testing-input', [TestInputController::class, 'test_input'])->name('input.get');
 Route::get('/testing-form', [TestInputController::class, 'form']);
@@ -60,17 +61,16 @@ Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login-process', [AuthController::class, 'loginProcess'])->name('login.process');
 Route::get('/forgot-password', [AuthController::class, 'forgotPassword'])->name('forgot.password');
 
-/** [ADMINISTRATOR] */  
+/** [ADMINISTRATOR] */
 Route::prefix('administrator')
-->name('administrator.')
-->middleware(['auth', 'role:super'])
-->group(function() {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/admin', [UserController::class, 'admin'])->name('admin');
-    Route::get('/student', [UserController::class, 'student'])->name('student');
-    Route::get('/item', [ItemController::class, 'index'])->name('item');
-    Route::get('/applicant-list', [ApplicantController::class, 'index'])->name('applicant');
-    Route::get('/return-list', [ReturnController::class, 'index'])->name('return');
-});
+    ->name('administrator.')
+    ->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'role:super,admin'])->name('dashboard');
+        Route::get('/admin', [UserController::class, 'admin'])->middleware(['auth', 'role:super'])->name('admin');
+        Route::get('/student', [UserController::class, 'student'])->middleware(['auth', 'role:super'])->name('student');
+        Route::get('/item', [ItemController::class, 'index'])->middleware(['auth', 'role:super, admin'])->name('item');
+        Route::get('/applicant-list', [ApplicantController::class, 'index'])->middleware(['auth', 'role:super,admin'])->name('applicant');
+        Route::get('/return-list', [ReturnController::class, 'index'])->middleware(['auth', 'role:super,admin'])->name('return');
+    });
 
 Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
