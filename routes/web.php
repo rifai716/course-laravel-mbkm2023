@@ -62,7 +62,8 @@ Route::get('/forgot-password', [AuthController::class, 'forgotPassword'])->name(
 
 /** [ADMINISTRATOR] */  
 Route::prefix('administrator')
-->name('administrator.')    
+->name('administrator.')
+->middleware(['auth', 'role:super'])
 ->group(function() {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/admin', [UserController::class, 'admin'])->name('admin');

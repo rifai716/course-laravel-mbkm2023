@@ -17,7 +17,8 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory()->create([
             'name' => 'Admin',
             'email' => 'admin@polindra.ac.id',
-            'password' => 'admin12345'
+            'password' => 'admin12345',
+            'role' => 'super'
         ]);
     }
 }
