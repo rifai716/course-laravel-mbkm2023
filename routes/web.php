@@ -25,9 +25,9 @@ use Illuminate\Support\Facades\Route;
 
 /** [LEARNING] */
 // route -- view
-Route::get('/', function () {
-    return view('learning.welcome');
-});
+// Route::get('/', function () {
+//     return view('learning.welcome');
+// });
 
 // route -- view
 Route::get('/learning/test', function () {
@@ -43,6 +43,17 @@ Route::get('/learning/template', function () {
 Route::get('/learning/test-controller-lebih-panjang/{param1}', [TestController::class, 'index'])->name('testing.parameter');
 Route::get('/learning/artikel/{slug}', [ArticleController::class, 'view']);
 Route::get('/learning/table', [TableController::class, 'view']);
+
+Route::get('/testing-input-dummy', [TestInputController::class, 'index']);
+Route::get('/testing-input', [TestInputController::class, 'test_input'])->name('input.get');
+Route::get('/testing-form', [TestInputController::class, 'form']);
+Route::get('/testing-view', [TestInputController::class, 'table']);
+/** [/END LEARNING] */
+
+/** [HOMEPAGE] */
+Route::get('/', function () {
+    return redirect()->route('administrator.dashboard');
+});
 
 /** [AUTH] */
 Route::get('/login', [AuthController::class, 'login'])->name('login');
@@ -60,9 +71,3 @@ Route::prefix('administrator')
     Route::get('/applicant-list', [ApplicantController::class, 'index'])->name('applicant');
     Route::get('/return-list', [ReturnController::class, 'index'])->name('return');
 });
-
-
-Route::get('/testing-input-dummy', [TestInputController::class, 'index']);
-Route::get('/testing-input', [TestInputController::class, 'test_input'])->name('input.get');
-Route::get('/testing-form', [TestInputController::class, 'form']);
-Route::get('/testing-view', [TestInputController::class, 'table']);
