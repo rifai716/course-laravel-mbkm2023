@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::table('items', function (Blueprint $table) {
             $table->index('user_id');
-            $table->foreignId('user_id')->after('quantity')->constrained('users', 'id')->cascadeOnDelete();
+            // ini digunakan apabila format / naming conventionnya ada yang di custome, jadi penulisan constrain table dan kolom harus di ikutsertakan
+            $table->foreignId('user_id')->after('quantity')->constrained('users', 'id')->cascadeOnDelete(); 
         });
     }
 
