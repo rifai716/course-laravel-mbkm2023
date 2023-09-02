@@ -12,13 +12,19 @@
                             </h3>
                         </div>
                         <div>
-                            <a href="{{ route('administrator.admin.create') }}" class="btn btn-white"><span class="mdi mdi-plus"></span> Tambah</a>
+                            <a href="{{ route('administrator.admin.create') }}" class="btn btn-white"><span
+                                    class="mdi mdi-plus"></span> Tambah</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row mt-5">
+            @if (Session::has('message'))
+                <div class="col-12">
+                    <div class="alert alert-success">{{ Session::get('message') }}</div>
+                </div>
+            @endif
             <div class="col-12">
                 <div class="card">
                     <div class="table-responsive rounded-2">
@@ -44,7 +50,8 @@
                                                 class="badge bg-secondary">{{ $item->admin?->position }}</span>
                                         </td>
                                         <td class="align-middle text-dark">
-                                            <a href="{{ route('administrator.admin.edit', ['id' => $item->id]) }}" class="btn btn-sm btn-warning rounded-5" title="Edit">
+                                            <a href="{{ route('administrator.admin.edit', ['id' => $item->id]) }}"
+                                                class="btn btn-sm btn-warning rounded-5" title="Edit">
                                                 <span class="mdi mdi-circle-edit-outline"></span>
                                             </a>
                                             <button class="btn btn-sm btn-danger rounded-5" title="Delete">

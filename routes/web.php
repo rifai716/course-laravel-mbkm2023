@@ -75,7 +75,7 @@ Route::prefix('administrator')
         Route::get('/admin/create', [UserController::class, 'formCreateAdmin'])->name('admin.create');
         Route::post('/admin/create/process', [UserController::class, 'processCreateAdmin'])->name('admin.create.process');
         Route::get('/admin/edit/{id}', [UserController::class, 'formEditAdmin'])->name('admin.edit');
-        Route::put('/admin/edit/process/{id}', [UserController::class, 'processEditAdmin'])->name('admin.edit.process');
+        Route::post('/admin/edit/process/{id}', [UserController::class, 'processEditAdmin'])->name('admin.edit.process');
         Route::delete('/admin/delete/process', [UserController::class, 'processDeleteAdmin'])->name('admin.delete.process');
     });
 
