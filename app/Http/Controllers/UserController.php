@@ -24,7 +24,7 @@ class UserController extends Controller
 
     function formCreateAdmin()
     {
-        return view(('administrator.admin.add'));
+        return view('administrator.admin.add');
     }
 
     function processCreateAdmin(Request $request)
@@ -48,5 +48,10 @@ class UserController extends Controller
         ]);
         if(!$admin) return redirect()->back()->withErrors(['Gagal membuat admin !']);
         return redirect()->route('administrator.admin');
+    }
+
+    function formEditAdmin($id) {
+        $user = User::with('admin')->where('id', $id)->firstOrFail();
+        return view('administrator.admin.edit', compact('id', 'user'));
     }
 }

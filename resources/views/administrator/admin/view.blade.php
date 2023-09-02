@@ -44,9 +44,9 @@
                                                 class="badge bg-secondary">{{ $item->admin?->position }}</span>
                                         </td>
                                         <td class="align-middle text-dark">
-                                            <button class="btn btn-sm btn-warning rounded-5" title="Edit">
+                                            <a href="{{ route('administrator.admin.edit', ['id' => $item->id]) }}" class="btn btn-sm btn-warning rounded-5" title="Edit">
                                                 <span class="mdi mdi-circle-edit-outline"></span>
-                                            </button>
+                                            </a>
                                             <button class="btn btn-sm btn-danger rounded-5" title="Delete">
                                                 <span class="mdi mdi-delete-outline"></span>
                                             </button>
