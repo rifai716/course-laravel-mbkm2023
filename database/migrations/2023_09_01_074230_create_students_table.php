@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained(); // ini dapat digunakan apabila format / naming convention pada table dan kolom tidak ada custom
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete(); // ini dapat digunakan apabila format / naming convention pada table dan kolom tidak ada custom
             $table->string('nim', 20);
             $table->string('department', 50);
             $table->string('class', 20);

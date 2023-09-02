@@ -41,7 +41,6 @@
                                     <input type="checkbox" class="form-check-input" id="rememberme">
                                     <label class="form-check-label" for="rememberme">Ingat Saya</label>
                                 </div>
-
                             </div>
                             <div>
                                 <!-- Button -->

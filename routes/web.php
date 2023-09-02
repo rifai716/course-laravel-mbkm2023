@@ -68,9 +68,15 @@ Route::prefix('administrator')
         Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'role:super,admin'])->name('dashboard');
         Route::get('/admin', [UserController::class, 'admin'])->middleware(['auth', 'role:super'])->name('admin');
         Route::get('/student', [UserController::class, 'student'])->middleware(['auth', 'role:super'])->name('student');
-        Route::get('/item', [ItemController::class, 'index'])->middleware(['auth', 'role:super, admin'])->name('item');
+        Route::get('/item', [ItemController::class, 'index'])->middleware(['auth', 'role:super,admin'])->name('item');
         Route::get('/applicant-list', [ApplicantController::class, 'index'])->middleware(['auth', 'role:super,admin'])->name('applicant');
         Route::get('/return-list', [ReturnController::class, 'index'])->middleware(['auth', 'role:super,admin'])->name('return');
+
+        Route::get('/admin/create', [UserController::class, 'formCreateAdmin'])->name('admin.create');
+        Route::post('/admin/create/process', [UserController::class, 'processCreateAdmin'])->name('admin.create.process');
+        Route::get('/admin/edit', [UserController::class, 'formEditAdmin'])->name('admin.edit');
+        Route::put('/admin/edit/process', [UserController::class, 'processEditAdmin'])->name('admin.edit.process');
+        Route::delete('/admin/delete/process', [UserController::class, 'processDeleteAdmin'])->name('admin.delete.process');
     });
 
 Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');

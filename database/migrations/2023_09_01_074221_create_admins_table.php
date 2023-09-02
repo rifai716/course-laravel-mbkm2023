@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('admins', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained(); // ini dapat digunakan apabila format / naming convention pada table dan kolom tidak ada custom
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete(); // ini dapat digunakan apabila format / naming convention pada table dan kolom tidak ada custom
             $table->string('position', 50);
             $table->timestamps();
 
