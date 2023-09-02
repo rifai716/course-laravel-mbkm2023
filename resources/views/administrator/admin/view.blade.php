@@ -54,7 +54,8 @@
                                                 class="btn btn-sm btn-warning rounded-5" title="Edit">
                                                 <span class="mdi mdi-circle-edit-outline"></span>
                                             </a>
-                                            <button class="btn btn-sm btn-danger rounded-5" title="Delete">
+                                            <button onclick="confirmDelete('{{ $item->id }}')"
+                                                class="btn btn-sm btn-danger rounded-5" title="Delete">
                                                 <span class="mdi mdi-delete-outline"></span>
                                             </button>
                                         </td>
@@ -68,3 +69,44 @@
         </div>
     </div>
 @endsection
+
+@push('assets-footer')
+    <script src="{{ asset('assets/libs/sweetalert2.js') }}"></script>
+    <script>
+        const confirmDelete = (id) => {
+            Swal.fire({
+                title: '<strong>Apakah anda yakin ?</strong>',
+                icon: 'info',
+                html: "Hapus data admin",
+                showCloseButton: true,
+                showCancelButton: true,
+                focusConfirm: false,
+                confirmButtonText: 'Ya, Hapus',
+                cancelButtonText: 'Batal',
+            }).then(result => {
+                if (result.isConfirmed) {
+                    let link = '{{ route('administrator.admin.delete.process', ['id' => ':id']) }}'
+                    link = link.replace(':id', id)
+                    fetch(link, {
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            method: 'DELETE'
+                        }).then(res => res.json())
+                        .then(res => {
+                            Swal.fire({
+                                title: res.message,
+                                icon: 'success',
+                                confirmButtonText: 'Oke',
+                            }).then(result => {
+                                window.location.href = window.location.href
+                            })
+                        })
+                        .catch(error => {
+                            console.log('error', error)
+                        })
+                }
+            })
+        }
+    </script>
+@endpush

@@ -47,23 +47,25 @@ class UserController extends Controller
             'user_id' => $user->id,
             'position' => $request->input('position')
         ]);
-        if(!$admin) return redirect()->back()->withErrors(['Gagal membuat admin !']);
+        if (!$admin) return redirect()->back()->withErrors(['Gagal membuat admin !']);
         return redirect()->route('administrator.admin')->with('message', 'Berhasil membuat user admin');
     }
 
-    function formEditAdmin($id) {
+    function formEditAdmin($id)
+    {
         $user = User::with('admin')->where('id', $id)->firstOrFail();
         return view('administrator.admin.edit', compact('id', 'user'));
     }
 
-    function processEditAdmin(Request $request, $id) {
-        if($request->input('password') != '') {
+    function processEditAdmin(Request $request, $id)
+    {
+        if ($request->input('password') != '') {
             $validator = Validator::make($request->all(), [
                 'name' => 'required|max:100',
                 'email' => 'required|email',
                 'password' => 'required|min:6',
                 'position' => 'required'
-            ]);    
+            ]);
 
             if ($validator->fails()) {
                 return redirect()->back()->withErrors($validator);
@@ -79,7 +81,7 @@ class UserController extends Controller
                 'position' => $request->position
             ]);
 
-            if($user && $admin) return redirect()->route('administrator.admin')->with('message', 'Berhasil perbarui data');
+            if ($user && $admin) return redirect()->route('administrator.admin')->with('message', 'Berhasil perbarui data');
             else return redirect()->route('administrator.admin')->with('message', 'Gagal perbarui data');
         } else {
             $validator = Validator::make($request->all(), [
@@ -101,8 +103,19 @@ class UserController extends Controller
                 'position' => $request->position
             ]);
 
-            if($user && $admin) return redirect()->route('administrator.admin')->with('message', 'Berhasil perbarui data');
+            if ($user && $admin) return redirect()->route('administrator.admin')->with('message', 'Berhasil perbarui data');
             else return redirect()->route('administrator.admin')->with('message', 'Gagal perbarui data');
         }
+    }
+
+    function processDeleteAdmin($id)
+    {
+        $deleted = User::where('id', $id)->delete();
+        if ($deleted) return response()->json([
+            'message' => 'Berhasil hapus data'
+        ], 200);
+        else return response()->json([
+            'message' => 'Gagal hapus data'
+        ], 400);
     }
 }
