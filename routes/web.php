@@ -77,6 +77,12 @@ Route::prefix('administrator')
         Route::get('/admin/edit/{id}', [UserController::class, 'formEditAdmin'])->name('admin.edit');
         Route::post('/admin/edit/process/{id}', [UserController::class, 'processEditAdmin'])->name('admin.edit.process');
         Route::delete('/admin/delete/process/{id}', [UserController::class, 'processDeleteAdmin'])->name('admin.delete.process');
+
+        Route::get('/student/create', [UserController::class, 'formCreateStudent'])->name('student.create');
+        Route::post('/student/create/process', [UserController::class, 'processCreateStudent'])->name('student.create.process');
+        Route::get('/student/edit/{id}', [UserController::class, 'formEditStudent'])->name('student.edit');
+        Route::post('/student/edit/process/{id}', [UserController::class, 'processEditStudent'])->name('student.edit.process');
+        Route::delete('/student/delete/process/{id}', [UserController::class, 'processDeleteStudent'])->name('student.delete.process');
     });
 
 Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');

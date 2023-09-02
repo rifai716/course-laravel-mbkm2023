@@ -8,6 +8,10 @@
     </div>
 @endif
 <div class="mb-3">
+    <label class="form-label">NIM</label>
+    <input type="text" class="form-control" name="nim" value="{{ $user->student->nim ?? '' }}">
+</div>
+<div class="mb-3">
     <label class="form-label">Nama</label>
     <input type="text" class="form-control" name="name" value="{{ $user->name ?? '' }}">
 </div>
@@ -16,14 +20,18 @@
     <input type="text" class="form-control" name="email" value="{{ $user->email ?? '' }}">
 </div>
 <div class="mb-3">
-    <label class="form-label">Jabatan</label>
-    <input type="text" class="form-control" name="position" value="{{ $user->admin->position ?? '' }}">
+    <label class="form-label">Jurusan</label>
+    <input type="text" class="form-control" name="department" value="{{ $user->student->department ?? '' }}">
 </div>
 <div class="mb-3">
+    <label class="form-label">Kelas</label>
+    <input type="text" class="form-control" name="class" value="{{ $user->student->class ?? '' }}">
+</div>
+@if ($id ?? NULL != NULL)
+<div class="mb-3">
     <label for="password" class="form-label">Password</label>
-    @if ($id ?? NULL != NULL)
         <small>(kosongkan jika tidak ingin diubah)</small>
-    @endif
     <input type="password" id="password" class="form-control" name="password" value="">
 </div>
+@endif
 <button type="submit" class="btn btn-primary">Simpan</button>
