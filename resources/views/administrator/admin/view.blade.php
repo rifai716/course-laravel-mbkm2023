@@ -32,16 +32,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @for ($i = 0; $i < 10; $i++)
+                            @foreach ($data as $item)
                                 <tr>
                                     <td class="align-middle">
                                         <div class="lh-1">
-                                            <h5 class="mb-0"> <a href="#" class="text-inherit">Ahmad Rifa'i, M.Tr.Kom.</a>
+                                            <h5 class="mb-0"> <a href="#" class="text-inherit">{{ $item->name }}</a>
                                             </h5>
                                         </div>
                                     </td>
-                                    <td class="align-middle">ahmadrifai716@gmail.com</td>
-                                    <td class="align-middle"><span class="badge bg-{{ $i%2 == 0 ? 'success' : 'danger' }}">{{ $i%2 == 0 ? 'KA LAB' : 'KA LAB' }}</span>
+                                    <td class="align-middle">{{ $item->email }}</td>
+                                    <td class="align-middle"><span class="badge bg-secondary">{{ $item->admin?->position }}</span>
                                     </td>
                                     <td class="align-middle text-dark">
                                         <button class="btn btn-sm btn-warning rounded-5" title="Edit">
@@ -52,7 +52,7 @@
                                         </button>
                                     </td>
                                 </tr>
-                            @endfor
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
