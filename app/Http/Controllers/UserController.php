@@ -34,7 +34,7 @@ class UserController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:100',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users,email',
             'password' => 'required|min:6',
             'position' => 'required'
         ]);
@@ -64,7 +64,7 @@ class UserController extends Controller
         if ($request->input('password') != '') {
             $validator = Validator::make($request->all(), [
                 'name' => 'required|max:100',
-                'email' => 'required|email',
+                'email' => 'required|email|unique:users,email',
                 'password' => 'required|min:6',
                 'position' => 'required'
             ]);
@@ -88,7 +88,7 @@ class UserController extends Controller
         } else {
             $validator = Validator::make($request->all(), [
                 'name' => 'required|max:100',
-                'email' => 'required|email',
+                'email' => 'required|email|unique:users,email',
                 'position' => 'required'
             ]);
 
@@ -174,7 +174,7 @@ class UserController extends Controller
             $validator = Validator::make($request->all(), [
                 'nim' => 'required|max:10',
                 'name' => 'required|max:100',
-                'email' => 'required|email',
+                'email' => 'required|email|unique:users,email',
                 'password' => 'required|min:6',
                 'nim' => 'required',
                 'department' => 'required',
@@ -202,7 +202,7 @@ class UserController extends Controller
         } else {
             $validator = Validator::make($request->all(), [
                 'name' => 'required|max:100',
-                'email' => 'required|email',
+                'email' => 'required|email|unique:users,email',
                 'nim' => 'required',
                 'department' => 'required',
                 'class' => 'required',

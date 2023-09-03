@@ -26,6 +26,6 @@ class Role
             }
         }
  
-        return abort(403, 'NOT ALLOWED !');
+        return abort(403, 'DILARANG');
     }
 }

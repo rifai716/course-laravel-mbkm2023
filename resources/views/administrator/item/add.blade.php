@@ -8,12 +8,11 @@
                         <div class="mb-2 mb-lg-0 text-white">
                             <h3 class="mb-0  text-white">
                                 <span class="mdi mdi-account-outline"></span>
-                                Form Tambah Admin
+                                Form Tambah Barang
                             </h3>
                         </div>
                         <div>
-                            <a href="{{ route('administrator.admin') }}" class="btn btn-white"><span
-                                    class="mdi mdi-arrow-left"></span> Kembali</a>
+                            <a href="{{ route('administrator.item.index') }}" class="btn btn-white"><span class="mdi mdi-arrow-left"></span> Kembali</a>
                         </div>
                     </div>
                 </div>
@@ -22,10 +21,10 @@
         <div class="row mt-5">
             <div class="offset-md-3 col-md-6">
                 <div class="card">
-                    <form action="{{ route('administrator.admin.create.process') }}" method="POST">
+                    <form action="{{ route('administrator.item.store') }}" method="POST">
                         @csrf
                         <div class="card-body">
-                           @include('administrator.admin.form')
+                           @include('administrator.item.form')
                         </div>
                     </form>
                 </div>

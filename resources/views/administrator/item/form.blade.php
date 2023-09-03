@@ -9,21 +9,18 @@
 @endif
 <div class="mb-3">
     <label class="form-label">Nama</label>
-    <input type="text" class="form-control" name="name" value="{{ $user->name ?? '' }}">
+    <input type="text" class="form-control" name="name" value="{{ $item->name ?? '' }}">
 </div>
 <div class="mb-3">
-    <label class="form-label">Email</label>
-    <input type="text" class="form-control" name="email" value="{{ $user->email ?? '' }}">
+    <label class="form-label">Jenis</label>
+    <input type="text" class="form-control" name="type" value="{{ $item->type ?? '' }}">
 </div>
 <div class="mb-3">
-    <label class="form-label">Jabatan</label>
-    <input type="text" class="form-control" name="position" value="{{ $user->admin->position ?? '' }}">
+    <label class="form-label">Kondisi</label>
+    <input type="text" class="form-control" name="condition" value="{{ $item->condition ?? '' }}">
 </div>
 <div class="mb-3">
-    <label for="password" class="form-label">Password</label>
-    @if ($id ?? NULL != NULL)
-        <small>(kosongkan jika tidak ingin diubah)</small>
-    @endif
-    <input type="password" id="password" class="form-control" name="password" value="">
+    <label class="form-label">Kuantitas</label>
+    <input type="text" class="form-control" name="quantity" value="{{ $item->quantity ?? '' }}">
 </div>
 <button type="submit" class="btn btn-primary">Simpan</button>
