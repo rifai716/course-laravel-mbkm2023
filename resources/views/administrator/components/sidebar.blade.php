@@ -44,7 +44,7 @@
 
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="{{ route('administrator.item') }}">
+                <a class="nav-link " href="{{ route('administrator.item.index') }}">
                     <i data-feather="box" class="nav-icon icon-xs me-2">
                     </i>
                     Barang

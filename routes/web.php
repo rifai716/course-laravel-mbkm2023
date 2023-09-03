@@ -63,26 +63,29 @@ Route::get('/forgot-password', [AuthController::class, 'forgotPassword'])->name(
 
 /** [ADMINISTRATOR] */
 Route::prefix('administrator')
+    ->middleware('auth')
     ->name('administrator.')
     ->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'role:super,admin'])->name('dashboard');
         Route::get('/admin', [UserController::class, 'admin'])->middleware(['auth', 'role:super'])->name('admin');
         Route::get('/student', [UserController::class, 'student'])->middleware(['auth', 'role:super'])->name('student');
-        Route::get('/item', [ItemController::class, 'index'])->middleware(['auth', 'role:super,admin'])->name('item');
+        // Route::get('/item', [ItemController::class, 'index'])->middleware(['auth', 'role:super,admin'])->name('item');
         Route::get('/applicant-list', [ApplicantController::class, 'index'])->middleware(['auth', 'role:super,admin'])->name('applicant');
         Route::get('/return-list', [ReturnController::class, 'index'])->middleware(['auth', 'role:super,admin'])->name('return');
 
-        Route::get('/admin/create', [UserController::class, 'formCreateAdmin'])->name('admin.create');
-        Route::post('/admin/create/process', [UserController::class, 'processCreateAdmin'])->name('admin.create.process');
-        Route::get('/admin/edit/{id}', [UserController::class, 'formEditAdmin'])->name('admin.edit');
-        Route::post('/admin/edit/process/{id}', [UserController::class, 'processEditAdmin'])->name('admin.edit.process');
-        Route::delete('/admin/delete/process/{id}', [UserController::class, 'processDeleteAdmin'])->name('admin.delete.process');
+        Route::get('/admin/create', [UserController::class, 'formCreateAdmin'])->middleware(['auth', 'role:super'])->name('admin.create');
+        Route::post('/admin/create/process', [UserController::class, 'processCreateAdmin'])->middleware(['auth', 'role:super'])->name('admin.create.process');
+        Route::get('/admin/edit/{id}', [UserController::class, 'formEditAdmin'])->middleware(['auth', 'role:super'])->name('admin.edit');
+        Route::post('/admin/edit/process/{id}', [UserController::class, 'processEditAdmin'])->middleware(['auth', 'role:super'])->name('admin.edit.process');
+        Route::delete('/admin/delete/process/{id}', [UserController::class, 'processDeleteAdmin'])->middleware(['auth', 'role:super'])->name('admin.delete.process');
 
-        Route::get('/student/create', [UserController::class, 'formCreateStudent'])->name('student.create');
-        Route::post('/student/create/process', [UserController::class, 'processCreateStudent'])->name('student.create.process');
-        Route::get('/student/edit/{id}', [UserController::class, 'formEditStudent'])->name('student.edit');
-        Route::post('/student/edit/process/{id}', [UserController::class, 'processEditStudent'])->name('student.edit.process');
-        Route::delete('/student/delete/process/{id}', [UserController::class, 'processDeleteStudent'])->name('student.delete.process');
+        Route::get('/student/create', [UserController::class, 'formCreateStudent'])->middleware(['auth', 'role:super'])->name('student.create');
+        Route::post('/student/create/process', [UserController::class, 'processCreateStudent'])->middleware(['auth', 'role:super'])->name('student.create.process');
+        Route::get('/student/edit/{id}', [UserController::class, 'formEditStudent'])->middleware(['auth', 'role:super'])->name('student.edit');
+        Route::post('/student/edit/process/{id}', [UserController::class, 'processEditStudent'])->middleware(['auth', 'role:super'])->name('student.edit.process');
+        Route::delete('/student/delete/process/{id}', [UserController::class, 'processDeleteStudent'])->middleware(['auth', 'role:super'])->name('student.delete.process');
+
+        Route::resource('item', ItemController::class);    
     });
 
 Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
