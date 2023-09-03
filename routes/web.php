@@ -56,10 +56,16 @@ Route::get('/', function () {
     return redirect()->route('administrator.dashboard');
 });
 
+Route::get('/home', function () {
+    return redirect()->route('administrator.dashboard');
+});
+
 /** [AUTH] */
-Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/login-process', [AuthController::class, 'loginProcess'])->name('login.process');
-Route::get('/forgot-password', [AuthController::class, 'forgotPassword'])->name('forgot.password');
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/login-process', [AuthController::class, 'loginProcess'])->name('login.process');
+    Route::get('/forgot-password', [AuthController::class, 'forgotPassword'])->name('forgot.password'); 
+});
 
 /** [ADMINISTRATOR] */
 Route::prefix('administrator')
